@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_specific_styles %}
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="form-signin w-100 m-auto" style="min-height:92vh"> 
+  <div class=" w-100 d-flex flex-column align-items-center">
+
+    {% include 'includes/alerts.html' %}
+
+    <div class="alert alert-danger w-100" id="error-alert1" role="alert" hidden></div>
+    <div class="alert alert-success w-100" id="success-alert1" role="alert" hidden></div>
+
+    <form id="loginForm1" class="mt-2" novalidate>
+      {% csrf_token %}
+        <h2 class="mb-4 fw-bold text-center" style="font-size: 24px;">Ulogujte se</h2>
+      <div>
+        <label for="email" class="form-label mb-1" style="font-weight: 600">Email <span class="color-salmon">*</span></label>
+        <input type="email" class="form-control height-40px" style="margin-bottom: 36px;width: 320px" id="email" name="email" aria-describedby="emailHelp" required>
+      </div>
+      <div>
+        <label for="floatingPassword" class="form-label mb-1" style="font-weight: 600">Lozinka <span class="color-salmon">*</span></label>
+        <input type="password" class="form-control height-40px" style="margin-bottom: 56px;width: 320px;" id="floatingPassword" name="password" aria-describedby="passwordHelp" required>
+      </div>
+      <div class="form-floating d-flex justify-content-center" style="margin-bottom: 32px;">
+        <button class="btn btn-lg btn-primary text-white" type="button" onclick="logMe('1')" style="width: 320px; height: 48px;font-weight: 700;font-size: 16px;">Ulogujte se</button>
+      </div>
+    </form>
+    <div class="form-floating">
+      <ul class="d-flex flex-column align-items-center p-0 font-weight-600 font-size-12px">
+        <div class="font-weight-600 font-size-12px" style="margin-bottom: 12px;"> Nemate nalog?
+          <a style="text-decoration: none;margin-bottom: 12px;" class="text-primary font-weight-600 font-size-12px" href="{% url 'register' %}">Registruj se</a>
+        </div>
+        <div class="font-weight-600 font-size-12px">
+          <a style="text-decoration: none;margin-bottom: 12px;" class="text-primary font-weight-600 font-size-12px" href="{% url 'forgot_password' %}">Zaboravili ste lozinku?</a>
+        </div>
+      </ul>
+    </div> 
+  </div>
+</div>
+
+{% endblock %}
+
+{% block page_specific_scripts %}
+{% endblock %}

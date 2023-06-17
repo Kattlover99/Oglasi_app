@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <section class="section-content" style="min-height:92vh">
+    <div class="card mx-auto border-0" style="max-width:520px; margin-top:40px;padding: 12px 24px 4px 24px;">
+
+      {% include 'includes/alerts.html' %}
+
+      <div class="alert alert-danger" id="error-alert1" role="alert" hidden></div>
+      <div class="alert alert-success" id="success-alert1" role="alert" hidden></div>
+
+      <!-- Type Selection -->
+      <h2 class="fw-bold text-center" style="margin-bottom: 18px;font-size: 24px;">Registracija</h2>
+      <nav class="mb-4">
+        <div class="nav pe-2 d-flex align-items-center justify-content-between" id="nav-tab1" role="tablist">
+          <div class="form-check ps-0">
+            <input class="form-check-input m-0" checked type="checkbox" style="width: 24px;height: 24px;" id="nav-userreg-tab" data-bs-toggle="tab" data-bs-target="#nav-userreg" type="checkbox" role="tab" aria-controls="nav-userreg">
+            <label class="form-check-label ms-3" for="nav-userreg-tab" >
+              Fizičko lice
+            </label>
+          </div>
+          <div class="form-check ">
+            <input class="form-check-input m-0" type="checkbox" style="width: 24px;height: 24px;" id="nav-areg-tab" data-bs-toggle="tab" data-bs-target="#nav-areg" type="checkbox" role="tab" aria-controls="nav-areg">
+            <label class="form-check-label ms-3" for="nav-areg-tab">
+              Pravno lice 
+            </label>
+          </div>
+        </div>
+      </nav>
+
+      <div class="tab-content" id="nav-tab1Content">
+        <!-- User Form -->
+        <div class="tab-pane fade show active" id="nav-userreg" role="tabpanel" aria-labelledby="nav-userreg-tab" tabindex="0">
+            {% include 'includes/account/register_user_form.html' with fromPage=1 %}
+        </div>
+
+        <!-- Agency Form -->
+        <div class="tab-pane fade" id="nav-areg" role="tabpanel" aria-labelledby="nav-areg-tab" tabindex="0">
+          {% include 'includes/account/register_agency_form.html' with fromPage=1 %}
+        </div>
+      </div>
+
+      <div class="form-floating">
+        <ul class="d-flex flex-column align-items-center p-0 font-weight-600 font-size-12px">
+          <div style="margin-bottom: 12px;">Već ste registrovani?
+            <a style="text-decoration: none;" class="active text-primary font-weight-600 font-size-12px" href="{% url 'login' %}">Ulogujte se</a>
+          </div>
+          <div class="font-weight-600 font-size-12px">
+            <a style="text-decoration: none;margin-bottom: 12px;" class="text-primary font-weight-600 font-size-12px" href="{% url 'forgot_password' %}">Zaboravili ste lozinku?</a>
+          </div>
+        </ul>
+      </div> 
+
+    </div>  
+  </section>
+<script>
+
+
+// get references to the checkboxes
+const userTabs1 = document.getElementById('nav-userreg-tab');
+const userContents1 = document.getElementById('nav-userreg');
+const agencyTabs1 = document.getElementById('nav-areg-tab');
+const agencyContents1 = document.getElementById('nav-areg');
+
+// add event listeners to the checkboxes
+userTabs1.addEventListener('click', () => {
+  userTabs1.checked = true;
+  agencyTabs1.checked = false;  
+  userContents1.style.display = 'block'
+  agencyContents1.style.display = 'none'
+});
+
+agencyTabs1.addEventListener('click', () => {
+  agencyTabs1.checked = true;
+  userTabs1.checked = false;
+  userContents1.style.display = 'none'
+  agencyContents1.style.display = 'block'
+});
+
+</script>
+{% endblock %}

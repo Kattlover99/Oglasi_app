@@ -1,0 +1,170 @@
+
+{% load static %}
+{% block page_specific_styles %}
+  <link href="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+<div class="map-canvas h-100" style="height: calc(100vh - 64px - 56px) !important" id="map"> 
+  <div class="map-switch-buttons-container">
+    <div class="rounded d-flex shadow">
+      <button onclick="queryParam('search_type', 0)" for="izdavanje" id="btnBuy" name="0" class="btn switch-type-button border-end  rounded-start rounded-0 {% if request.GET.search_type == '0' %} bg-primary text-white  {% else %} bg-white color-salmon {% endif %}" style="width: 88px;height: 40px;" type="button">Prodaja</button>
+      <button onclick="queryParam('search_type', 1)" for="prodaja" id="btnRent" name="1" class="btn switch-type-button rounded-end rounded-0 {% if request.GET.search_type == '1' %} bg-secondary text-white {% else %} bg-white text-secondary {% endif %}" style="width: 88px;height: 40px" type="button">Izdavanje</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block page_specific_scripts %}
+
+<script src="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.js"></script><script>
+
+const allMarkers = new Map()
+let globalMap = null;
+
+function initMap() {
+  const key = 'VmRKj3ewutGzwLJmPdKS';
+  const belgrade = { lat: 44.8125, lng: 20.4612 };
+  const style = `https://api.maptiler.com/maps/streets-v2/style.json?key=${key}`
+  const map = new maplibregl.Map({
+    container: 'map',
+    style: style ,
+    center: belgrade,
+    zoom: 12
+  }).addControl(new maplibregl.NavigationControl(), 'bottom-right');
+
+  {% for l in listings %} 
+  {% if l.listingmap_set.first.lat != None %}
+
+  const contentString{{ l.id }} = `
+  <div class="card shadow-sm border-0" id="listingCard" style="cursor: pointer;" onclick="window.location = '{% url 'listing_profile' slug=l.slug %}'">
+    <div class="rounded " style="background: center / cover no-repeat url('{% get_media_prefix %}{{ l.images.first.file }}');height: 280px; width:280px">
+      <div class="rounded d-flex align-items-start flex-column h-100 listing-item-overlayed">
+        <div class="col-12 mb-auto d-flex">
+          <span class="rounded d-flex align-items-center justify-content-center {% if l.type == '0' %} bg-danger {% elif l.type == '1' %} bg-secondary {% endif %} text-white agency-inputs" style="width: 66px;height: 20px;margin: 8px 0px 0px 12px">
+            {% if l.type == '0' %}
+              Prodaja
+            {% elif l.type == '1' %}
+              Izdavanje
+            {% endif %}
+          </span>
+        </div>
+        <div class="col-12 px-3 pb-2 text-white">
+          <h6 class="listing-card-overlay-price">{{ l.price }} eur</h6>
+            <div class="d-flex flex-direction-column justify-content-between">
+            <p class="card-text listing-description listing-card-overlay-title">{{ l.title|truncatechars:30 }}</p>
+            <a style="text-decoration:none" href="{% url 'listing_profile' slug=l.slug %}">
+            </a>
+        </div>
+        <div class="d-flex justify-content-between align-items-center border-top border-light pt-2" >
+          <div class="d-flex align-items-center">
+            <img class="me-1" style="height: 20px;width: 20px; filter: brightness(0) invert(1)" src="{% static 'images/items/' %}{{l.category.name|cut:' '}}.svg" alt=" ">
+            <small class="listing-icons-text">
+              {% if l.category.name == 'Poslovni prostor' %}
+                Pos. Prostor
+              {% elif l.category.name == 'Komercijalni prostor' %}
+                Kom. Prostor
+              {% elif l.category.name == 'Građevinska parcela' %}
+                Građ. Zem.
+              {% elif l.category.name == 'Poljoprivredna parcela' %}
+                Poljo. Zem.
+              {% elif l.category.name == 'Proizvodni prostor' %}
+                Pro. Prostor
+              {% elif l.category.name == 'Ugostiteljski prostor' %}
+                Ugo. Prostor
+              {% elif l.category.name == 'Stambene nekretnine' %}
+                Ostalo
+              {% elif l.category.name == 'Poslovni prostor - Lokal' %}
+                Lokal
+              {% elif l.category.name == 'Poslovni prostor - Kancelarija' %}
+                Kancelarija
+              {% else %}
+                {{l.category.name}}
+              {% endif %}
+            </small>
+          </div>
+          <div class="d-flex align-items-center text-nowrap">
+            <img style="height: 20px;width: 20px;filter: brightness(0) invert(1)" src="{% static 'images/shared/item-area.svg' %}" alt="area item">
+            <small class="listing-icons-text ms-1">{{ l.listingcharacteristics_set.first.size|floatformat:0 }}m2</small>
+          </div>
+              {% if l.category.name|cut:' ' == 'Poljoprivrednaparcela' or l.category.name|cut:' ' == 'Građevinskaparcela'%}
+          <div class="d-flex align-items-center">
+            <img style="height: 20px;width: 20px;filter: brightness(0) invert(1)" src="{% static 'images/items/Struja.svg' %}" alt="Struja">
+            <small class="listing-icons-text ms-1 {% if 'Struja' in l.details %} {% else %} text-decoration-line-through {% endif %}">Struja</small>
+          </div>
+          <div class="d-flex align-items-center">
+            <img style="height: 20px;width: 20px;filter: brightness(0) invert(1)" src="{% static 'images/items/Voda.svg' %}" alt="Voda ">
+            <small class="listing-icons-text ms-1 {% if 'Voda' in l.details %} {% else %} text-decoration-line-through {% endif %}">Voda</small>
+          </div>
+            {% else %}
+          <div class="d-flex align-items-center">
+            <img style="height: 20px;width: 20px;filter: brightness(0) invert(1)" src="{% static 'images/shared/item-floormap.svg' %}" alt="Floor">
+            <small class="listing-icons-text ms-1">{{ l.listingcharacteristics_set.first.structure }}</small>
+          </div>
+          <div class="d-flex align-items-center text-nowrap">
+            <img style="height: 20px;width: 20px;filter: brightness(0) invert(1)" src="{% static 'images/items/Parking.svg' %}" alt="Parking">
+            <small class="listing-icons-text ms-1
+            {% if l.listingcharacteristics_set.first.parking %}
+              {% elif 'Garaža' in listing.details %}
+              {% elif 'Parking van zone' in listing.details %}
+              {% elif 'Parking u zoni' in listing.details %}
+              {% else %} text-decoration-line-through 
+            {% endif %}">Parking</small>
+          </div>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>`;
+
+  
+  // Popup definition before binding it to a marker
+  let markerPopup{{l.id}} = new maplibregl.Popup({
+      closeOnClick: true,
+      closeButton: false
+    })
+    .setMaxWidth("400px")
+    .setHTML(contentString{{ l.id }});
+
+    // Connect the popup to a new marker
+    {% if l.type == "0" %}
+
+      let marker{{l.id}} = new maplibregl.Marker({color: '#E57374'})
+        .setLngLat([Number("{{l.listingmap_set.first.lng }}"), Number("{{l.listingmap_set.first.lat }}")])
+        .setPopup(markerPopup{{l.id}})
+        .addTo(map);
+    {% else %}
+
+    let marker{{l.id}} = new maplibregl.Marker({color: '#617E8C'})
+        .setLngLat([Number("{{l.listingmap_set.first.lng }}"), Number("{{l.listingmap_set.first.lat }}")])
+        .setPopup(markerPopup{{l.id}})
+        .addTo(map);
+
+    {% endif %}
+
+  allMarkers.set(String({{l.id}}), marker{{l.id}})
+
+  {% endif %}
+  {% endfor %}
+  
+  globalMap = map;
+}
+
+initMap()
+
+
+function onListingHover(id) {
+  const marker = allMarkers.get(id)
+  globalMap.flyTo({
+    center: [marker._lngLat.lng ,marker._lngLat.lat ],
+    essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+    zoom: 13
+  });
+marker.togglePopup() 
+}
+  
+</script>
+
+{% endblock %}

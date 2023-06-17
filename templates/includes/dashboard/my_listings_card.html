@@ -1,0 +1,111 @@
+{% load static %}
+
+<div class="d-flex border-bottom  border-dark-50 py-3" >
+  <div class="col-4 d-flex">
+    <div style="width: 66px;" class="position-absolute text-center rounded agency-inputs text-white {% if listing.type == '0' %} bg-danger {% elif listing.type == '1' %} bg-secondary {% endif %}">
+      {% if listing.type == '0' %}
+        Prodaja
+      {% elif listing.type == '1' %}
+        Izdavanje
+      {% endif %}
+    </div>
+    <a style="text-decoration:none" href="{% url 'listing_profile' slug=listing.slug %}">
+      <img class="rounded" src='{% get_media_prefix %}{{ listing.images.first.file }}' alt="Hearth" width="180px" height="102px">
+    </a>
+    <div class="ps-3 d-flex flex-column justify-content-between">
+      <p class="my-listing-title">{{listing.title|truncatechars:25}}</p>
+      <p class="d-flex my-listing-location">{{listing.city}}, {{listing.municipality}}</p>
+      <h6 class="my-listing-price mb-0">{% include 'includes/listing_helpers/price_parser.html' %}</h6>
+    </div>
+  </div>
+  <div class="col-2 d-flex justify-content-center align-items-center fw-light my-listing-date" >
+      {{listing.date_listed|date:"d"}}.{{listing.date_listed|date:"m"}}.{{listing.date_listed|date:"Y"}}
+  </div>
+  <div class="col-2 d-flex justify-content-center align-items-center">  
+      {% if listing.status == '0' %}
+      <div class="rounded my-listing-status-text text-primary border border-primary ">
+        Aktivan
+      </div>
+      {% elif listing.status == '1' %}
+      <div class="rounded my-listing-status-text text-warning border border-warning ">
+        Na čekanju
+      </div>
+      {% else %}
+        <div class="rounded my-listing-status-text text-danger border border-danger ">
+          Istekao
+        </div>
+      {% endif %}
+  </div>
+  <div class="col-2 d-flex justify-content-center align-items-center">
+      {{listing.listingviewcount_set.count}}
+  </div>
+  <div class="col-2 px-2 d-flex justify-content-end align-items-center">
+    <form method='POST' action="{% url 'edit' %}">
+      {% csrf_token %}
+      <button type="button" class="border-0 bg-white me-3" data-bs-toggle="modal" data-bs-target="#editModal{{ listing.id }}">
+        <input type="hidden" name="listing_id" value="{{ listing.id }}">
+        <img src="{% static 'images/icons/edit.svg' %}" alt="Hearth" width="30px" height="30px" style="filter: invert(70%) sepia(37%) saturate(596%) hue-rotate(71deg) brightness(84%) contrast(89%);">
+      </button>
+      <div class="modal fade" id="editModal{{ listing.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-success" id="exampleModalLabel">Izmenite oglas? </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex">
+              Da li ste sigurni da želite  <div class="text-success mx-1"> IZMENITI </div> oglas?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Ne</button>
+              <button type="submit" class="btn btn-success px-4">Da</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <form method='POST' action="{% url 'delete' listing.id %}">
+      {% csrf_token %}
+      <button type="button" class="border-0 bg-white" data-bs-toggle="modal" data-bs-target="#deleteModal{{ listing.id }}">
+        <input type="hidden" name="_method" value="DELETE">
+        <img src="{% static 'images/icons/bin.svg' %}" alt="Hearth" width="28px" height="28px" style="filter: invert(44%) sepia(59%) saturate(823%) hue-rotate(317deg) brightness(88%) contrast(92%);"/>
+      </button>
+      <div class="modal fade" id="deleteModal{{ listing.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-danger" id="exampleModalLabel">Izbrišite oglas? </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex">
+              Da li ste sigurni da želite <div class="text-danger mx-1"> IZBRISATI </div> oglas?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Ne</button>
+              <button type="submit" class="btn btn-danger px-4" onclick="saveScrollPosition()">Da</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+  </div>
+</div>
+<script>
+
+// save scroll position before refresh page
+function saveScrollPosition() {
+  window.addEventListener('beforeunload', function () {
+    localStorage.setItem('scrollTop', window.pageYOffset);
+});
+}
+// show saved   position before after page
+
+window.addEventListener('load', function () {
+  const scrollTop = localStorage.getItem('scrollTop');
+  if (scrollTop) {
+      window.scrollTo(0, scrollTop);
+      localStorage.removeItem('scrollTop')
+  }
+});
+
+</script>

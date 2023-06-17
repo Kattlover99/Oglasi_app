@@ -1,0 +1,1013 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,400i,600,700&display=swap);
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+body {
+  color: #484848;
+  font-family: 'Nunito', sans-serif;
+  /*line-height: 1.642;*/
+  scrollbar-width: thin;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  line-height: 1.2;
+}
+.height-28 {
+  height: 28px!important;
+}
+
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+/*forms*/
+/*.form-control {*/
+/*  background-color: #ffffff;*/
+/*  border: 1px solid #ebebeb;*/
+/*  border-radius: 8px;*/
+/*  font-size: 14px;*/
+/*  color: #484848;*/
+/*  line-height: 1.2;*/
+/*  height: 50px;*/
+/*}*/
+
+/*.form-select {*/
+/*  font-size: 14px;*/
+/*  padding: 13px;*/
+/*  background-color: #ffffff;*/
+/*  border: 1px solid #ebebeb;*/
+/*  color: #484848;*/
+/*}*/
+
+.link-secondary {
+  color: #00A6BD !important;
+  background: #FFFFFF !important;
+  opacity: 0.7;
+  backdrop-filter: blur(142px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 5px;
+}
+
+
+.btn-white {
+  color: #00A6BD;
+  background: #FFFFFF;
+}
+.btn-white:hover {
+  opacity: 0.85;
+  color: #00A6BD;
+  background: #FFFFFF;
+}
+
+.btn-transparent {
+  color: #fff;
+  background: none;
+}
+.btn-transparent:hover {
+  color: #fff;
+  opacity: 0.85;
+}
+
+.btn-blue {
+  background: #00A6BD;
+  color: white;
+}
+.btn-blue:hover {
+  background: #00A6BD;
+  color: white;
+  opacity: 0.85;
+}
+
+.btn-circle {
+  padding: 0;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  text-align: center;
+  border: none;
+}
+
+.btn:hover {
+  opacity: 0.85 !important;
+}
+
+input[type="checkbox"] {
+  box-shadow: none !important;
+}
+
+/* FOOTER */
+.copyright-text {
+  font-family: 'Nunito', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  color: rgba(226, 226, 226, 0.4);
+  padding-top:24px;
+  padding-bottom: 54px;
+}
+
+.footer-title {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  color: #FFFFFF;
+  padding-bottom: 12px;
+}
+
+.footer-text {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #FFFFFF;
+}
+
+/*header*/
+
+.center-absolute-header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px; /* Need a specific value to work */
+}
+
+.menu-user-icon {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #FFFFFF;
+  font-size: 15px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.menu-user-icon-dark {
+  border: 1px solid #484848 !important;
+  color: #484848 !important
+}
+
+.header .nav-link {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.header {
+  box-shadow: none;
+  border-bottom: none;
+  color: #484848;
+}
+
+.header .logo-text {
+  /*color: #ffffff;*/
+  font-weight: bold;
+  font-size: 22px;
+  padding-left: 15px;
+  text-transform: capitalize;
+  vertical-align: middle;
+  color: #484848;
+}
+.header a {
+  font-size: 16px;
+  color: #484848;
+}
+
+.header .create-listing-btn {
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  line-height: 26px;
+  text-align: center; 
+  color: #fff;
+  background-color: #617E8C;
+  box-shadow: none !important;
+  border-radius: 5px;
+  float:right;
+}
+
+.header .nav {
+  display: flex;
+  justify-content: center;
+}
+
+
+.footer {
+  background: #455A64;
+  color: white;
+  font-size: 14px;
+}
+.footer .border-top {
+  border-top: 1px solid #6D828C !important;
+}
+.footer .social-buttons a {
+  color: #00A6BD;
+  font-size: 28px;
+}
+.footer .newsletter {
+  border-radius: 19px;
+}
+/* @media only screen and (min-width: 768px) and (min-height: 768px) {
+  .footer.sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+} */
+
+.listing-item-overlayed {
+  background-color: #00000030
+}
+.shadow-caroseul-controls {
+  background-color: #00000020;
+}
+/*Dashbord profile*/
+.listing-sub-card {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/*Dropdown menu*/
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 5;
+}
+.dropdown-submenu:hover .dropdown-menu {
+  display: block;
+}
+.parent-hover:hover {
+  color: #00A6BD;
+  cursor: pointer;
+}
+.selected {
+  color: #00A6BD;
+}
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  min-width: 202px;
+}
+.hoverGalery:hover {
+  opacity: 0.7;
+}
+
+.dropdown.active .dropdown-content {
+  display: block;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu-content {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-submenu:hover .dropdown-submenu-content {
+  display: block;
+}
+
+/*-----------------------*/
+.listing-description {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+
+.pagination .page-link.active {
+  color: white !important;
+  background-color: #00A6BD !important;
+  border-color: #00A6BD !important;
+  width: 32px !important;
+  height: 32px !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination .page-link {
+  cursor: pointer;
+  display: flex;
+  color: #484848 !important;
+  padding: 0px !important;
+  width: 32px !important;
+  height: 32px !important;
+  align-items: center;
+  justify-content: center;
+}
+
+ul.pagination {
+  margin-bottom: 0 !important;
+}
+
+.bg-blue {
+  background-color: #00A6BD;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.bg-red {
+  background-color: #E57374;
+}
+
+
+.min-height-50vh{
+  min-height: 50vh;
+}
+
+.color-blue {
+  color: #00A6BD !important;
+}
+
+.color-white {
+  color: white;
+}
+
+.icons-black {
+  filter: brightness(2.5) invert(1);
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+/* ::-webkit-scrollbar {
+  display: none;
+}
+ */
+
+.text-small {
+  font-size: 12px!important;
+}
+
+.bg-grayish {
+  background-color: #617E8C
+}
+.fullscreen {
+  background-size: contain !important;
+  margin: 50px;
+  width: 92%!important;
+  height: 90%!important;
+  transition: all 0.1s ease-in-out;
+
+}
+.fullscreenBG {
+  background-color: #4848488a;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%!important;
+  height: 100%!important;
+  z-index: 100;
+}
+
+.contain-img {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.infoTabStyle, .mapLocationStyle, .imageVideoFlooplanStyle, .canvasStyle {
+  border-bottom: 2px #F66C6C solid;
+  color: #F66C6C!important;
+}
+
+.maplibregl-popup  {
+  border: none !important;
+}
+
+.mapboxgl-popup-content, .maplibregl-popup-content {
+  border: none !important;
+}
+
+@media print {
+  .non-printable-area {
+    display: none;
+  }
+  .printable-area {
+    width: 100%!important;
+  }
+}
+
+.mapboxgl-popup-content, .maplibregl-popup-content {
+  padding: 0px !important
+}
+
+.mapboxgl-popup-close-button, .maplibregl-popup-close-button {
+  color: white !important
+}
+
+.margin-container {
+    max-width: 1536px !important;
+    padding-left:40px;
+    padding-right:40px;
+    margin:0px auto!important
+}
+
+.margin-container-half-map {
+  max-width: 1920px;
+  margin:0px auto!important
+}
+.bg-gray {
+  background-color: #455A64;
+}
+
+.active-blue-tab {
+  background-color: #00A6BD;
+  color: white;
+}
+.tab:hover,
+.infoTabs:hover {
+  cursor:pointer;
+}
+.row-span {
+  grid-row: span 2;
+}
+
+.blog-content {
+  overflow: hidden; /* hide any content that overflows the parent div */
+}
+
+.blog-content img {
+  max-width: 100%; /* set the maximum width of the image to 100% of the parent div */
+  height: auto; /* maintain the aspect ratio of the image */
+}
+.fw-600 {
+  font-weight: 600!important;
+}
+
+.px-32px {
+  padding-left:32px!important;
+  padding-right: 32px!important;
+}
+
+.text-justify {
+  text-align: justify;
+}
+.width-90px {
+  width: 90px!important;
+}
+.text-black {
+  color: #484848;
+}
+.section-title {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.section-subtitle {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.section-text {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: justify;
+  letter-spacing: 0.02em;
+}
+.icon18px {
+  height: 18px;
+  width: 18px;
+}
+.icon20px {
+  height: 20px;
+  width: 20px;
+
+}
+.icon24px {
+  height: 24px!important;
+  width: 24px!important;
+}
+/* LISTING CARD */
+
+.listing-card-price-location-div {
+  max-height: 20px;
+}
+
+.listing-card-price-text {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: right;
+  letter-spacing: 0.02em;
+}
+
+.listing-card-location-text {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #484848;
+}
+
+.listing-card-title {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: #484848;
+  min-height: 44px;
+  /* MG: This shit doesnt affect the recommended ads - will be solved through html max height 44px, title pushing content down, extending in height... */ 
+}
+
+.listing-icons-text {
+  font-weight: 700;
+  font-size: 10px;
+}
+
+/* LISTING OVERLAY CARD */
+.listing-card-overlay-price {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  padding-bottom:8px !important;
+}
+
+.listing-card-overlay-title {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  padding-bottom: 6px !important;
+}
+
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.border-radius-10 {
+  border-radius: 10px!important;
+}
+.height-40px {
+  height: 40px!important;
+}
+.margin-bottom-12 {
+  margin-bottom: 12px!important;
+}
+
+.my-favorute-card-button {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19.6px;
+  letter-spacing: 2%;
+  color: #617E8C;
+  border: 1px solid #617E8C ;
+}
+.popular-locations-text {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 140%;
+  color: #484848;
+}
+.loyalty-program {
+  padding-top:24px;
+  padding-bottom: 78px;
+  background: #617E8C;
+  color: white;
+}
+
+.loyalty-program-content {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* BLOG CARD*/
+
+.blog-title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height:23.68px;
+  color: #484848;
+}
+.blog-type {
+  font-weight:600;
+  font-size: 14px;
+  line-height:20.72px;
+}
+.blog-description-date {
+  font-weight:400;
+  overflow: hidden;
+  font-size: 14px;
+  letter-spacing: 2%;
+  line-height:20.72px;
+  color: #484848;
+}
+/* PROFILE LISTING */
+
+.city-location-main {
+  font-weight:600;
+  font-size: 18px;
+  color: #8C8C8C;
+}
+
+.profile-top-icons {
+  font-weight:600;
+  font-size: 16px;
+  line-height:22.4px;
+}
+
+.profile-card-tab {
+  font-weight:700;
+  font-size: 20px;
+  color: #484848;
+}
+/* Agency card on profile listing page */
+
+.agency-inputs {
+  font-weight:600;
+  font-size: 12px;
+}
+
+/* Profile-page-card insted of chart */
+.city-location {
+  font-weight:600;
+  font-size: 14px;
+  color: #8C8C8C;
+}
+.icon-text {
+  font-weight:700;
+  font-size: 12px;
+}
+
+/* MY LISTINGS CARd */
+
+.my-listing-status-text {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  min-width: 74px;
+  text-align: center;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.my-listing-date {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #8C8C8C;
+}
+
+.my-listing-title {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.my-listing-location {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 140%;
+}
+
+.my-listing-price {
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #484848 !important;
+}
+.container-blog-news {
+  max-width: 1536px !important;
+  padding-left:180px !important;
+  padding-right:180px !important;
+  margin:0px auto!important
+}
+.efficiency-bar-text{
+  color:#FFFFFF;
+  font-weight:600;
+  font-size: 16px;
+}
+.text-mid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CREATE EDIT LISTING*/
+.description-guide {
+  color:#8C8C8C;
+  font-weight:400;
+  font-size: 12px;
+  line-height:16.37px;
+}
+.detail-amenity-text {
+  color: #484848;
+  font-weight:600;
+  font-size: 12px;
+  line-height:16.37px;
+}
+.description-inputs {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #8C8C8C;
+}
+
+/* MG start - added style for CL needs */
+
+.description-inputs-cl {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 40px;
+  color: #8C8C8C;
+}
+
+/* MG end */
+
+.create-edit-button {
+  color:#FFFFFF!important;
+  font-weight:700;
+  font-size: 16px;
+  line-height:21.82px;
+}
+/* NEWSBUILDINGS*/
+.search-button {
+  font-weight: 600;
+  font-size: 16px;
+  line-height:23.68px;
+  color: #484848;
+}
+.card-location-text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height:19.68px;
+  color: #8C8C8C;
+}
+.card-type-text {
+  font-weight: 400!important;
+  font-size: 12px!important;
+  line-height:16.68px;
+}
+.card-red-price {
+  font-weight: 700;
+  font-size: 16px;
+  line-height:12.68px;
+  color: #E57374;
+}
+
+/* HOMEPAGE SEARCH*/
+.search-font {
+  font-weight: 600;
+  font-size: 18px;
+  line-height:24.55px;
+}
+.swich-button {
+  font-weight: 700;
+  font-size: 18px;
+  line-height:25.2px;
+  letter-spacing: 2%;
+}
+.listing-counter {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32.74px;
+}
+.placeholders-search {
+  font-weight: 400;
+  font-size: 16px;
+  line-height:24.55px;
+  color: #a2a2a2;
+}
+.placeholders-search::placeholder {
+  color: #484848;
+}
+.detail-input-placeholders {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19.1px;
+  color: #a2a2a2;
+}
+
+.detail-input-placeholders::placeholder {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19.1px;
+  color: #a2a2a2;
+}
+.input-padding {
+  padding: 5px 0px 4px 8px!important;
+}
+/*HALF MAP VIEW*/
+.save-reset {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19.6px;
+  color: #484848;
+}
+.margin-6_36 {
+  margin-bottom: 6.36px!important;
+}
+.sidebar-input {
+  height: 30px;
+}
+.sidebar-input::placeholder {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16.8px;
+  color: rgba(72, 72, 72, 0.4);
+
+}
+.select-inputs {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16.8px;
+}
+
+.switch-type-button {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* MAP */
+.map-switch-buttons-container {
+  padding: 16px;
+  position: inherit;
+  z-index: 1;
+  width: min-content;
+}
+
+.color-salmon {
+  color: #E57374 !important;
+}
+
+.font-weight-600 {
+  font-weight: 600!important;
+}
+.font-size-12px {
+  font-size: 12px!important;
+}
+
+
+@media (min-width: 1919px) {
+  .og-container-fluid {
+    padding-left: 208px;
+    padding-right: 208px;
+  }
+  .og-container {
+    margin:0px auto;
+    max-width: 1920px;
+    padding-left: 208px;
+    padding-right: 208px;
+  }
+  .og-container-180{
+    margin:0px auto;
+    max-width: 1920px;
+    padding-left: 180px;
+    padding-right: 180px;
+  }
+  .og-container-180-fluid{
+    padding-left: 208px;
+    padding-right: 208px;
+    max-width: 1920px;
+
+  }
+}
+
+
+@media (max-width: 1919px) {
+  .og-container-fluid {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .og-container {
+    margin:0px auto;
+    max-width: 1536px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .og-container-180{
+    margin:0px auto;
+    max-width: 1920px;
+    padding-left: 180px;
+    padding-right: 180px;
+  }
+}
+
+.og-container-40 {
+  margin: 0px auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.px-12 {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.p-12 {
+  padding: 12px !important;
+}
+
+.max-1200 {
+  max-width: 1200px !important;
+}
+
+.hover-open:hover > ul {
+  display: block;
+}
+.hover-open > ul{
+  margin: 2px 0px 0px 0px;
+}
+
+.header .dropdown-menu {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 24px rgba(14, 41, 43, 0.25) !important;
+  border-radius: 0px 0px 5px 5px !important;
+  border: 0px !important;
+  min-width: 118px;
+}
+
+/* MG add start */
+
+/* User icon homepage after sign in (cant change default bootstrap one) MG added (colour doesnt work) */
+
+.user-icon{
+  height: 24px;
+  width: 24px;
+  color: white;
+}
+
+.btn-search {
+  border-radius: 0px 5px 5px 0px;
+  background: #00A6BD;
+  color: white;
+}
+
+/* MG add end */

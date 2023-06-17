@@ -1,0 +1,109 @@
+{% load static %}
+<section class="footer pt-4 sticky ">
+  <footer class="og-container">
+    <div class="row px-12">
+      <div class="col-3 ps-0 col-md-3 mb-3">
+        <h5 class="footer-title">O nama</h5>
+        <p class="m-0 footer-text">Some thing about this site and services, I need more text to see how it s look like....Some thing about this site and services, I need more text to see how it s look </p>
+      </div>
+
+      <div class="col-3 col-md-2 mb-3">
+        <h5 class="footer-title">Informacije</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">O nama</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">Cenovnik</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">Karijera</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">Česta pitanja</a></li>
+        </ul>
+      </div>
+
+      <div class="col-3 col-md-2 mb-3">
+        <h5 class="footer-title">Informacije</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">O nama</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">Cenovnik</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">Karijera</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">Česta pitanja</a></li>
+        </ul>
+      </div>
+
+      <div class="col-3 col-md-2 mb-3">
+        <h5 class="footer-title">Ostalo</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">Vesti</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">Aktuelno</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">Novogradnja</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link footer-text p-0 text-white">Projekti</a></li>
+        </ul>
+      </div>
+
+      <div class="col-3 pe-0 col-md-3 mb-3">
+        <form>
+          <h5 class="footer-title">Newsletter</h5>
+          <div class="d-flex flex-column flex-sm-row w-100 gap-2 mb-3">
+            <label for="newsletter1" class="visually-hidden">Email address</label>
+            <input id="newsletter1" type="text" class="form-control newsletter" placeholder="Email address">
+            <div>
+              <button class="btn-blue btn-circle s"><i class="bi bi-chevron-right"></i></button>
+            </div>
+          </div>
+          <h5 class="footer-title">Pratite nas</h5>
+          <div class="d-flex justify-content-between social-buttons">
+            <a class="" href="">
+              <img id="facebook" src="{% static 'images/icons/facebook.svg' %}" alt="..." height="32px" width="32px">
+            </a>
+            <a class="" href="">
+              <img id="instagram" src="{% static 'images/icons/instagram.svg' %}" alt="..." height="32px" width="32px">
+            </a>
+            <a class="" href="">
+              <img id="youtube" src="{% static 'images/icons/youtube.svg' %}" alt="..." height="32px" width="32px">
+            </a>
+            <a class="" href="">
+              <img id="linkedin" src="{% static 'images/icons/linkedin.svg' %}" alt="..." height="32px" width="32px">
+            </a>
+            <a class="" href="">
+              <img id="email_pic" src="{% static 'images/icons/email.svg' %}" alt="..." height="32px" width="32px">
+            </a>
+            <a class="" href="">
+              <img id="phone_call" src="{% static 'images/icons/phone-call.svg' %}" alt="..." height="32px" width="32px">
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column flex-sm-row justify-content-between py-2 border-top">
+      <p class="m-o copyright-text">Copyright 2022.</p>
+      <ul class="list-unstyled d-flex">
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+      </ul>
+    </div>
+  </footer>
+</section>
+<script>
+  const icons = [
+  { element: document.getElementById('facebook'), src: '{% static "images/icons/facebook_hover.svg" %}' },
+  { element: document.getElementById('instagram'), src: '{% static "images/icons/instagram_hover.svg" %}' },
+  { element: document.getElementById('youtube'), src: '{% static "images/icons/youtube_hover.svg" %}' },
+  { element: document.getElementById('linkedin'), src: '{% static "images/icons/linkedin_hover.svg" %}' },
+  { element: document.getElementById('email_pic'), src: '{% static "images/icons/email_hover.svg" %}' },
+  { element: document.getElementById('phone_call'), src: '{% static "images/icons/phone-call_hover.svg" %}' }
+];
+
+icons.forEach(icon => {
+  const { element, src } = icon;
+  const originalSrc = element.src;
+  
+  element.addEventListener('mouseover', () => {
+    element.src = src;
+
+  });
+  
+  element.addEventListener('mouseout', () => {
+    element.src = originalSrc;
+
+  });
+});
+</script>

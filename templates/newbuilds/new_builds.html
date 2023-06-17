@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_specific_styles %}
+  <link rel="stylesheet" href="{% static 'css/listings.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="margin-container" style="padding: 24px 40px 0px 40px!important;">
+  <div class="row m-0  align-items-center fs-6" style="height: 64px;">
+    <div class="col-2  ps-0 profile-top-icons">Rezultata: 1436</div>
+    <div class="col-13  px-0">
+      <select class="form-select bg-secondary height-40px efficiency-bar-text">
+        <option selected>Grad</option>
+        <option value="1">Beograd</option>
+        <option value="2">Kragujevac</option>
+        <option value="3">Novi Sad</option>
+        <option value="4">Niš</option>
+        <option value="5">Subotica</option>
+        <option value="6">Ostalo</option>
+      </select>
+    </div> 
+    <div class="col-14  px-4">
+      <div class="input-group">
+        <input type="text" class="form-control border-primary height-40px" placeholder="Naziv novogradnje ili projekta" aria-label="agency_name" aria-describedby="button-addon2">
+        <button class="btn btn-blue btn-search d-flex align-items-center search-font"
+                     type="submit" id="btnSearch" style="width: 132px;">
+              Pretraži
+              <img class="ms-2" src="{% static 'images/icons/search.svg' %}" alt="Search icon" style="height: 20px; width: 20px;"/>
+            </button>
+      </div>
+    </div>
+    <div class="col-3  px-0" style="margin-left: auto;">
+      {% include 'agencies/agency_sorting.html' %}
+    </div>
+  </div>
+</div>
+
+<div class="margin-container pt-4" style="padding: 8px 24px!important;">
+  <div class="row">
+  {% include 'newbuilds/new_builds_card.html' %}
+  {% include 'newbuilds/new_builds_card.html' %}
+  {% include 'newbuilds/new_builds_card.html' %}
+  {% include 'newbuilds/new_builds_card.html' %}
+  {% include 'newbuilds/new_builds_card.html' %}
+  {% include 'newbuilds/new_builds_card.html' %}
+  {% include 'newbuilds/new_builds_card.html' %}
+  {% include 'newbuilds/new_builds_card.html' %}
+  {% include 'newbuilds/new_builds_card.html' %}
+  </div>
+</div>
+<div class="bg-grayish d-flex justify-content-center align-items-center mt-4" style="height: 84px;">
+  {% include 'includes/listings/listings_pagination.html' %}
+</div>
+{% endblock %}

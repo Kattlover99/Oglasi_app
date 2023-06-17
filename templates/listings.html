@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_specific_styles %}
+  <link rel="stylesheet" href="{% static 'css/listings.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Filters -->
+<div class="row og-container-40  m-0 py-1 " style="height: 64px;">
+  {% include 'includes/listings/listings_filter_top.html' %}
+  {% include 'includes/listings/change_page_view.html' %}
+</div>
+<div class="w-100 border-bottom"></div>
+
+    <div class="og-container-40 pe-0" >
+
+      <!-- Listings and Map -->
+      <div class="d-flex justify-content-center full-screen-row">
+
+        <div class="col-7 overflow-y-scroll max-1200 pe-3 ps-0" style="height: calc(100vh - 64px - 56px);margin-left: -12px!important;">
+          <!-- Pagination and Sort -->
+          <div class="row py-2 align-items-center" >
+            <div class="col m-auto blog-title">Rezultata: {{ listings.paginator.count }} {{ listings.page }} </div>
+            <div class="col-5">{% include 'includes/listings/listings_pagination.html' %}</div>
+            <div class="col ps-0">{% include 'includes/listings/listings_sorting.html' %}</div> 
+          </div>
+          
+          <!-- Listing Items -->
+          <div class="row h-100">
+            <div class="col-12 p-0 m-0">
+              <div class="row">
+                {% for listing in listings %}
+                <div class="col-xxl-4 col-md-6 col-sm-12" >
+                  {% include 'includes/listings/listing_overlay_card.html' with listing=listing %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 d-flex flex-column align-self-end pb-5 pt-4">
+                {% include 'includes/listings/listings_pagination.html' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="col h-100">
+          {% include 'includes/listings/listings_map.html' with listing=listing %}
+        </div>
+
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% load static %}
+
+<div class="d-flex justify-content-end"> 
+  <input hidden id="token" value="{{ csrf_token }}" >
+  {% if user.id in listing.likes %}
+      <img class="isLiked{{listing.id}}" src="{% static 'images/items/HearthFilled.svg' %}" alt="Liked" 
+      {% if request.path == '/oglasi/omiljeni-oglasi/' or request.GET.prikaz == 'lista' or request.GET.prikaz == 'mreža' %} width="24px" height="24px" 
+      {% elif '/oglasi/pregled' in request.path or '/vesti/' in request.path or '/blog/' in request.path %} height="20px" width="20px" %}
+      {% elif request.resolver_match.url_name == 'home' %} width="22px" height="22px" 
+      {% else %} width="20px" height="20px" 
+      {% endif %} 
+      {% if user.id is not None %} onclick="addRemoveFavorites('{{listing.id}}')" {% else %} data-bs-target="#accountModal" data-bs-toggle="modal"{% endif %} >
+      {% else %}
+      <img class="isLiked{{listing.id}}" src="{% static 'images/icons/hearth.svg' %}" alt="Like" 
+      {% if request.path == '/oglasi/omiljeni-oglasi/' or request.GET.prikaz == 'lista' or request.GET.prikaz == 'mreža' %} width="24px" height="24px" 
+      {% elif '/oglasi/pregled' in request.path or '/vesti/' in request.path or '/blog/' in request.path %} height="20px" width="20px" %}
+      {% elif request.resolver_match.url_name == 'home' %} width="22px" height="22px" 
+      {% else %} width="20px" height="20px" 
+      {% endif %} 
+      {% if user.id is not None %} onclick="addRemoveFavorites('{{listing.id}}')" {% else %} data-bs-target="#accountModal" data-bs-toggle="modal"{% endif %} >
+    {% endif %}
+</div>
+<script>
+  function addRemoveFavorites(id) {
+    let url = "{% url 'listing_add_remove_favorites' %}"
+    let csrftoken =  document.getElementById('token').value;
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("X-CSRFToken", csrftoken);
+    fetch(`${url}`, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({
+          id,
+        })
+    })
+    .then(response => {
+      if (response.status === 200) {
+        return response.json()
+      } else {
+        throw new Error('Something went wrong')
+      }
+    }).then(data => {
+      if (data) {
+        const like = document.getElementsByClassName(`isLiked${id}`)
+        for (let i = 0; i < like.length; i++) {
+          like[i].src = `{% static 'images/items/HearthFilled.svg' %}`
+        }
+      } else {
+        const unlike = document.getElementsByClassName(`isLiked${id}`)
+        for (let i = 0; i < unlike.length; i++) {
+          unlike[i].src = `{% static 'images/icons/hearth.svg' %}`
+        }
+      }
+    })
+  }
+</script>

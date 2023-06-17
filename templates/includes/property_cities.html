@@ -1,0 +1,76 @@
+{% load static %}
+
+<!-- Property Cities -->
+<div>
+  <form action="/oglasi" method="GET" class="property-city">
+    <h2 class="text-center section-title" style="margin-bottom: 32px;">Pronađite nekretninu u gradu</h2>
+
+    <div class="row padding-x-8px">
+      <div class="col-lg-8 col-xl-8 mb-4 ">
+        <div class="property-item">
+          <div class="thumb background-beograd"></div>
+          <button type="submit" name="grad" class="overlay details border-0" value="Beograd" style="background: none">
+            Beograd
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-4 col-xl-4 mb-4 padding-s-20px">
+        <div class="property-item">
+          <div class="thumb background-kg"></div>
+          <button type="submit" name="grad" class="overlay details border-0" value="Kragujevac"
+                  style="background: none">
+            Kragujevac
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-5 mb-4 ">
+        <div class="property-item">
+          <div class="thumb background-ns"></div>
+          <button type="submit" name="grad" class="overlay details border-0" value="Novi Sad" style="background: none">
+            Novi Sad
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-4 mb-4">
+        <div class="property-item">
+          <div class="thumb background-nis"></div>
+          <button type="submit" name="grad" class="overlay details border-0" value="Niš" style="background: none">
+            Niš
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-3 mb-4">
+        <div class="property-item">
+          <div class="thumb background-subotica"></div>
+          <button type="submit" name="grad" class="overlay details border-0" value="Subotica" style="background: none">
+            Subotica
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <form action="/oglasi" method="GET">
+    <div class="row padding-x-8px">
+      <div class="col-12" style="margin-bottom: 32px;">
+        <h5 class="popular-locations-text">Pogledajte popularne lokacije</h5>
+      </div>
+    </div>
+    <div class="row popular-location padding-x-8px">
+      {% for location in popular_locations %}
+        <div class="col-md-3 mb-4 ">
+          <div class="location-cover d-flex flex-column" style="background-image: url('{% get_media_prefix %}{{ location.image.file }}');">
+            <button type="submit" name="lokacija" class="overlay details border-0 h-100 " value="{{ location.name }}">
+              <h3 class="text-white d-flex ms-4">{{ location.name }}</h3>
+            </button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </form>
+</div>

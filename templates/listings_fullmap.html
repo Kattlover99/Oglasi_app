@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_specific_styles %}
+  <link rel="stylesheet" href="{% static 'css/listings.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row og-container-40 m-0 py-1" style="height: 64px;">
+  {% include 'includes/listings/listings_filter_top.html' %}
+  {% include 'includes/listings/change_page_view.html' %}
+</div>
+
+<div class="w-100 border-bottom"></div>
+
+  <section class="full-map-listing-section">
+    
+    <div class="h-100 m-0 p-0 h-100 og-container-40">
+      <!-- Filters -->
+      
+      <!-- Map -->
+      <div class="full-screen-row h-100">
+        <div class="og-container-40 h-100">
+          {% include 'includes/listings/listings_map.html' with listing=listing %}
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+{% endblock %}

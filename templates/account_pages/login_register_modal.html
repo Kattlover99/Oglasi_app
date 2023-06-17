@@ -1,0 +1,243 @@
+{% load static %}
+
+{% block page_specific_styles %}
+{% endblock %}
+
+<a class="nav-link pe-0 hover ps-1 d-flex align-items-center justify-content-center {% if request.path == '/' %} nav-hover text-white {% endif %} hovers"  data-bs-toggle="modal" data-bs-target="#accountModal" onclick="signInModal()">
+  <i class="bi bi-person ms-2 me-1 cursor-pointer hover {% if request.path == '/' %} text-white {% else %} menu-user-icon-dark {% endif %} rounded-circle menu-user-icon"></i>
+  <span>Prijava</span>
+</a>
+  <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 512px!important;">
+      <div class="modal-content">
+        <div class="modal-body" style="padding: 12px 24px 4px 24px;">
+          <div class="tab-content" id="myTabContents">
+            
+            <div class="alert alert-danger" id="error-alert" role="alert" hidden></div>
+            <div class="alert alert-success" id="success-alert" role="alert" hidden></div>
+
+            <!-- SIGN IN MODAL-->
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+              <div class=" w-100 d-flex flex-column align-items-center">
+                <form id="loginForm" method="post" class="needs-validation" novalidate>
+                  {% csrf_token %}
+                    <h2 class="mb-4 fw-bold text-center" style="font-size: 24px;">Ulogujte se</h2>
+                  <div>
+                    <label for="email" class="form-label mb-1" style="font-weight: 600">Email <span class="color-salmon">*</span></label>
+                    <input type="email" class="form-control height-40px" style="margin-bottom: 36px;width: 320px" id="email" name="email" aria-describedby="emailHelp" required>
+                  </div>
+                  <div>
+                    <label for="floatingPassword" class="form-label mb-1" style="font-weight: 600">Lozinka <span class="color-salmon">*</span></label>
+                    <input type="password" class="form-control height-40px" style="margin-bottom: 56px;width: 320px;" id="floatingPassword" name="password" aria-describedby="passwordHelp" required>
+                  </div>
+                  <div class="form-floating d-flex justify-content-center" style="margin-bottom: 32px;">
+                    <button class="btn btn-lg btn-primary text-white" type="button" onclick="logMe()" style="width: 320px; height: 48px;font-weight: 700;font-size: 16px;">Ulogujte se</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!--REGISTER MODAL-->
+            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+              <div class=" w-100" >
+                  <!-- Type Selection -->
+                  <h2 class="fw-bold text-center" style="margin-bottom: 18px;font-size: 24px;">Registracija</h2>
+                  <nav class="mb-4">
+                    <div class="nav pe-2 d-flex align-items-center justify-content-between" id="nav-tab" role="tablist">
+                      <div class="form-check ps-0">
+                        <input class="form-check-input m-0" checked type="checkbox" style="width: 24px;height: 24px;" id="nav-userregister-tab" data-bs-toggle="tab" data-bs-target="#nav-userregister" type="checkbox" role="tab" aria-controls="nav-userregister">
+                        <label class="form-check-label ms-3" for="nav-userregister-tab" >
+                          Fizičko lice
+                        </label>
+                      </div>
+                      <div class="form-check ">
+                        <input class="form-check-input m-0" type="checkbox" style="width: 24px;height: 24px;" id="nav-agencyregister-tab" data-bs-toggle="tab" data-bs-target="#nav-agencyregister" type="checkbox" role="tab" aria-controls="nav-agencyregister">
+                        <label class="form-check-label ms-3" for="nav-agencyregister-tab">
+                          Pravno lice 
+                        </label>
+                      </div>
+                    </div>
+                  </nav>
+
+                  <div class="tab-content" id="nav-tabContent">
+                    <!-- User Form -->
+                    <div class="tab-pane fade show active" id="nav-userregister" role="tabpanel" aria-labelledby="nav-userregister-tab" tabindex="0">
+                        {% include 'includes/account/register_user_form.html' %}
+                    </div>
+
+                    <!-- Agency Form -->
+                    <div class="tab-pane fade" id="nav-agencyregister" role="tabpanel" aria-labelledby="nav-agencyregister-tab" tabindex="0">
+                      {% include 'includes/account/register_agency_form.html' %}
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!--FORGOT PASSWORD MODAL-->
+            <div class="tab-pane fade" id="forgotpassword" role="tabpanel" aria-labelledby="forgotpassword-tab">
+              <div class=" form-signin w-100 m-auto">
+                <form action="{% url 'forgot_password' %}" method="post">
+                  {% csrf_token %}
+                  <h2 class="mb-4 fw-bold text-center" style="font-size: 24px;">Forgot password?</h2>
+                  <div>
+                    <label for="forgot-password-label" class="form-label mb-1" style="font-weight: 600">Email *</label>
+                    <input type="email" class="form-control height-40px" style="margin-bottom: 36px;width: 320px" id="forgot-password-label" name="email" aria-describedby="emailHelp" required>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <button class="btn btn-lg btn-primary text-white" style="width: 320px;height: 48px;font-weight: 700;font-size: 16px;">Pošalji</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="form-floating">
+              <ul class="d-flex flex-column align-items-center p-0 font-weight-600 font-size-12px"  id="myTabas" role="tablist">
+                <div id="log_in" style="display: none;margin-bottom: 12px;">Već ste registrovani?
+                  <a style="text-decoration: none;" class="active text-primary font-weight-600 font-size-12px"  id="signin-tab" data-bs-toggle="tab" data-bs-target="#signin" type="button" role="tab" aria-controls="signin" aria-selected="true"  onclick="singin()">Ulogujte se</a>
+                </div>
+                <div id="dont_have_acc" class="font-weight-600 font-size-12px">Nemate nalog?
+                  <a style="text-decoration: none;margin-bottom: 12px;" class="text-primary font-weight-600 font-size-12px" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false"  onclick="register()">Registruj se</a>
+                </div>
+                <div id="forgot_pass" class="font-weight-600 font-size-12px">
+                  <a style="text-decoration: none;margin-bottom: 12px;" class="text-primary font-weight-600 font-size-12px" id="forgotpassword-tab" data-bs-toggle="tab" data-bs-target="#forgotpassword" type="button" role="tab" aria-controls="forgotpassword" aria-selected="false" onclick="forgotpassword()">Zaboravili ste lozinku?</a>
+                </div>
+              </ul>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="ps-3 nav-link  {% if request.path == '/' %} nav-hover  text-white {% endif %}" data-bs-toggle="modal" data-bs-target="#accountModal" onclick="registerModal()">Registracija</a>
+
+<script>
+// get references to the checkboxes
+const userTabs = document.getElementById('nav-userregister-tab');
+const userContents = document.getElementById('nav-userregister');
+const agencyTabs = document.getElementById('nav-agencyregister-tab');
+const agencyContents = document.getElementById('nav-agencyregister');
+
+// add event listeners to the checkboxes
+userTabs.addEventListener('click', () => {
+  userTabs.checked = true;
+  agencyTabs.checked = false;  
+  userContents.style.display = 'block'
+  agencyContents.style.display = 'none'
+});
+
+agencyTabs.addEventListener('click', () => {
+  agencyTabs.checked = true;
+  userTabs.checked = false;
+  userContents.style.display = 'none'
+  agencyContents.style.display = 'block'
+});
+
+
+// AUTH
+function logMe(fromPage) {
+  const form = document.getElementById(fromPage ? 'loginForm1' : 'loginForm');
+  const formData = new FormData(form);
+  const url = "{% url 'login' %}";
+  const errorLog = document.getElementById(fromPage ? 'error-alert1' : 'error-alert');
+  const successLog = document.getElementById(fromPage ? 'success-alert1' : 'success-alert');
+
+  fetch(url, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    errorLog.hidden = true;
+    successLog.hidden = true;
+    if (data.success) {
+      window.location = '{% url "home" %}?logged=true'
+    } else {
+      errorLog.innerText = 'Pogrešni podaci';
+      errorLog.hidden = false;
+    }
+  })
+  .catch(error => {
+    errorLog.innerText = 'Došlo je do greške, molimo javite se podršci.';
+    errorLog.hidden = false;
+  });
+}
+
+function registerMe(formId, fromPage) {
+  const form = document.getElementById(formId);
+  const formData = new FormData(form);
+  const url = "{% url 'register' %}";
+  const errorLog = document.getElementById(fromPage ? 'error-alert1' : 'error-alert');
+  const successLog = document.getElementById(fromPage ? 'success-alert1' : 'success-alert');
+
+  fetch(url, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    errorLog.hidden = true;
+    successLog.hidden = true;
+    if (data.success) {
+      successLog.innerText = 'Hvala Vam na registraciji, molimo potvrdite aktivacijski email.'
+      successLog.hidden = false;
+      form.reset()
+    } else {
+      errorLog.innerText = data.error;
+      errorLog.hidden = false;
+    }
+  })
+  .catch(error => {
+    errorLog.innerText = 'Došlo je do greške, molimo javite se podršci.';
+    errorLog.hidden = false;
+  });
+}
+
+function singin() {
+  document.getElementById('error-alert').hidden = true;
+  document.getElementById('success-alert').hidden = true;
+
+  document.getElementById('dont_have_acc').setAttribute('style', 'display: block;')
+  document.getElementById('forgot_pass').setAttribute('style', 'display: block;')
+  document.getElementById('log_in').setAttribute('style', 'display: none;')
+}
+function register() {
+  document.getElementById('error-alert').hidden = true;
+  document.getElementById('success-alert').hidden = true;
+
+  document.getElementById('dont_have_acc').setAttribute('style', 'display: none;')
+  document.getElementById('forgot_pass').setAttribute('style', 'display: block;')
+  document.getElementById('log_in').setAttribute('style', 'display: block;')
+}
+
+function forgotpassword() {
+  document.getElementById('error-alert').hidden = true;
+  document.getElementById('success-alert').hidden = true;
+
+  document.getElementById('dont_have_acc').setAttribute('style', 'display: block;')
+  document.getElementById('forgot_pass').setAttribute('style', 'display: none;')
+  document.getElementById('log_in').setAttribute('style', 'display: block;')
+}
+
+function registerModal() {
+  document.getElementById('error-alert').hidden = true;
+  document.getElementById('success-alert').hidden = true;
+  document.getElementById('register-tab').click()
+}
+function signInModal() {
+  document.getElementById('error-alert').hidden = true;
+  document.getElementById('success-alert').hidden = true;
+  document.getElementById('signin-tab').click()
+}
+
+</script>
